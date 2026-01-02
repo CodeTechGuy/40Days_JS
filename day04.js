@@ -15,6 +15,7 @@ function ques02(){
     amt%100==0 ? console.log("Withdrawal successful") : console.log("Please enter the amount in multiples of 100");
 }
 
+
 function ques03(){
     let ops = prompt("Enter operation (+, -, *, /.%): ");
     let num1 = parseFloat(prompt("Enter first number: "));
@@ -84,3 +85,18 @@ function ques05(){
 }
 
 ques05();
+
+
+
+/*
+
+&& - can first option be converted to false return false	
+     can't convert first option then return second option
+
+?? - null/undefined
+
+
+typeof(array) = object
+typeof(null) = object
+
+*/
