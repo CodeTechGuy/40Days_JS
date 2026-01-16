@@ -70,6 +70,7 @@ person.age = 30;
 console.log(person);
 
 
+
 //      Factory function
 function createUser (name , age ) {
     return {
@@ -158,6 +159,7 @@ console.log(Object.values(profile));
 console.log(Object.entries(profile));
 
 
+
 //       Object Reference 
 let fruit = { name: "mongo" };        //XA01
 let oneMoreFruit = { name: "mango" }; //YB02
@@ -168,3 +170,78 @@ console.log(fruit === oneMoreFruit);  // false  , because both are different obj
 fruit = oneMoreFruit;   // now both are pointing to same object in memory
 
 console.log(fruit == oneMoreFruit);
+
+
+
+//          Static Methods
+
+const target = {p:1 , q:2};
+const source = {a:3 , b:4};
+
+const returnedObj = Object.assign(target , source);   // when Object.assign is used  the value is assigned from src to target
+console.log(returnedObj);
+
+const obj1 = {name: "tapas"};
+const obj2 = Object.assign({},obj1);
+console.log(obj2); // obj1 & obj2 have same value but not the same reference
+console.log( obj1 == obj2); // false                // this is Shallow cloning
+
+
+//      Shallow vs Deep copy
+const obj3 = {
+    a : 1,
+    b : {c: 2}
+}
+const obj4 = Object.assign({} , obj3);
+console.log(obj4);  //  {a: 1, b: {…}}
+
+obj4.b.c = 3;
+console.log(obj4.b.c); // 3
+console.log(obj3.b.c); // 3    // for nested objects there wont be new references created (..here 'c' is nested object)
+
+obj4.a = 100;
+console.log(obj4.a);    // 100
+console.log(obj3.a);    // 1    (..here 'a' is non-nested object) for non-nested object it will be creating a new refernce always
+
+
+//      for Deep clone use structuredClone
+const obj5 = structuredClone(obj3);
+obj5.a = 300;
+obj5.b.c = 30;
+
+console.log(obj5.a); // 300
+console.log(obj3.a); // 1
+
+console.log(obj5.b.c); // 30
+console.log(obj3.b.c); // 2
+
+
+//      Convert an Object to an Array   --->  use Object.entries();
+const myObj = {
+    a: "tapas",
+    b: 32
+};
+const myArr = Object.entries(myObj);
+console.log(myArr);
+
+
+//      Convert Map or Array to Object --- use Object.fromEntries 
+const entries = new Map ([
+    ["foo","bar"],
+    ["baz", 42],
+]);
+
+const objEntries = Object.fromEntries(entries)
+console.log(objEntries);
+
+
+//      Immutability with freeze()         -- immutable(something you cannot change)  , mutable(you can change)
+const emp = {
+    sal: 100
+};
+Object.freeze(emp);
+emp.salary = 200;
+console.log(emp.salary);
+console.log(Object.isFrozen(emp));
+
+//  Immutability with seal()
