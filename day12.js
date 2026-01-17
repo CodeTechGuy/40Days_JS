@@ -241,7 +241,161 @@ const emp = {
 };
 Object.freeze(emp);
 emp.salary = 200;
+emp.name = "Alex";
+delete emp.salary;
 console.log(emp.salary);
-console.log(Object.isFrozen(emp));
+console.log(emp);
+console.log("-----------")
+console.log(Object.isFrozen(emp));          // with freeze you can't add new properties or re-assign new values
+
+
 
 //  Immutability with seal()
+const dept = {
+    name : "finance"
+}
+Object.seal(dept);                          // with seal similar to freeze only this is you can re-assign value's to property
+
+dept.address = "Banglore";
+delete dept.name;
+
+dept.name = "HR";
+console.log(dept)                        
+
+
+//  hasOwn() method
+console.log(Object.hasOwn(dept , "name"));      // true
+console.log(Object.hasOwn(dept , "address"));   // false
+
+
+//  object destructuring
+console.log("Learn Object Destructuring....")
+
+const student = {
+    'name': 'John Williamson',
+    'age': 9,
+    'std': 3,
+    'subjects': ['Maths', 'English', 'EVS'],
+    'parents': {
+      'father': 'Brown Williamson',
+      'mother': 'Sophia',
+      'email': 'john-parents@abcde.com'
+    },
+    'address': {
+      'street': '65/2, brooklyn road',
+      'city': 'Carterton',
+      'country': 'New Zealand',
+      'zip': 5791
+    }   
+}
+
+const {name, age, meal="bread"} = student ;    // instead of this -- const name = student.name  ( we use destructuring )
+// let meal = student.meal? student.meal : "bread"
+                // or
+// student.meal = "bread";
+// const meal = student.meal
+
+const city = student.address.city;
+console.log(name, city , age, meal);
+
+//      creating new variable
+const {subjects, numberOfSubjects = subjects.length} = student;
+console.log(numberOfSubjects); // 3
+
+
+
+//      Aliases
+const {std: standard} = student;
+// console.log(std);     // will give error
+console.log(standard);
+
+
+//      Nested objects destructuring
+
+const {address : {zip}} = student  ;                                    // const {address} = student;
+                                                                        // const zip = address.zip;
+console.log(zip);
+
+
+const {address: { zip: Jip }} = student;   // Aliases in nested objects
+console.log(Jip); // 5791   
+
+
+
+//    --------------- Function parameter destructuring -----------------
+function sendEmail({parents:{email}}) {
+    console.log(`Sending email to ${email}`);
+}
+sendEmail(student);
+
+
+// -------------  Destructure a function Return Value -----------------
+const getStudent = () => {
+    return {
+       'name': 'John Williamson',
+        'age': 9,
+        'std': 3,
+        'subjects': ['Maths', 'English', 'EVS'],
+        'parents': {
+          'father': 'Brown Williamson',
+          'mother': 'Sophia',
+          'email': 'john-parents@abcde.com'
+        },
+        'address': {
+          'street': '65/2, brooklyn road',
+          'city': 'Carterton',
+          'country': 'New Zealand',
+          'zip': 5791
+        }
+    }
+}
+
+const {name: anotherName , subjects: anotherSubject} = getStudent();                    // const anotherStudent = getStudent();
+                                                                                        // const anotherName = anotherStudent.name;
+                                                                                        // const anotherSubject = anotherStudent.subjects;
+
+console.log(anotherName , anotherSubject);
+
+
+//                     Destructuring in loops
+const students = [
+    {
+        'name': 'William',
+        'grade': 'A'
+    },
+    {
+        'name': 'Tom',
+        'grade': 'A+'
+    },
+    {
+        'name': 'Bob',
+        'grade': 'B'
+    }
+];
+
+for( let {name, grade} of students ) {
+    console.log(name , grade);
+}
+
+
+//   Optional Chaining
+console.log("Optional Chaining...")
+
+const employee = {
+    salary: {
+        bonus: 300
+    }
+};
+
+console.log(employee.department); // undefined
+
+//console.log(employee.department.name); // Error
+
+// const name = employee.department && employee.department.name
+
+const NewName = employee.department?.name
+
+console.log(employee.address); // undefined
+const NewAddress = employee.address?.street; // undefined
+console.log(NewName)
+console.log(NewAddress)
