@@ -399,3 +399,29 @@ console.log(employee.address); // undefined
 const NewAddress = employee.address?.street; // undefined
 console.log(NewName)
 console.log(NewAddress)
+
+
+//  Optional chaining with function
+const getEmployee = () => {
+    return {
+        name: "John",
+        department: {
+            name: "IT",
+            manager: "Alice"
+        },
+        salary: {
+            base: 50000,
+            bonus: 5000
+        }
+    };
+};
+
+const newEmployee = getEmployee();
+console.log(newEmployee.department?.manager); // Alice
+console.log(newEmployee.salary?.bonus); // 5000
+console.log(newEmployee.benefits?.health); // undefined
+
+
+//  Task
+const extraUser = { name: "Alex", age: undefined };
+console.log(extraUser.age ?? "Not provided");
