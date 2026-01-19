@@ -425,3 +425,17 @@ console.log(newEmployee.benefits?.health); // undefined
 //  Task
 const extraUser = { name: "Alex", age: undefined };
 console.log(extraUser.age ?? "Not provided");
+
+
+//  Nullish Coalescing Operator (??)
+const config = {
+    host: null,
+    port: 8080,
+    useSSL: false
+};
+const host = config.host ?? "localhost"; // "localhost"
+const port = config.port ?? 80; // 8080
+const useSSL = config.useSSL ?? true; // false
+console.log(host, port, useSSL);
+//  The nullish coalescing operator (??) only considers null and undefined as nullish values.
+//  It does not treat other falsy values like 0, false, or an empty string as nullish.
