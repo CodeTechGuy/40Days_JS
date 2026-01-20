@@ -101,3 +101,41 @@ function Person(name, age) {
 const person1 = new Person('Alice', 30);
 console.log(person1.getName()); // Output: Alice
 console.log(person1.getAge());  // Output: 30
+
+// Example 5: Function Factory using Closure
+function makeMultiplier(multiplier) {
+    return function(value) {
+        return value * multiplier;
+    };
+}
+const double = makeMultiplier(2);
+const triple = makeMultiplier(3);
+console.log(double(5)); // Output: 10
+console.log(triple(5)); // Output: 15
+console.log(makeMultiplier(4)(5)); // Output: 20    
+
+
+// Example 6: Module Pattern using Closure
+const CounterModule = (function() {
+    let count = 0; // private variable  
+    return {
+        increment: function() {
+            count += 1;
+            return count;
+        },
+        decrement: function() {
+            count -= 1; 
+            return count;
+        },
+        getCount: function() {
+            return count;
+        }
+    };
+})();
+console.log(CounterModule.increment()); // Output: 1
+console.log(CounterModule.increment()); // Output: 2
+console.log(CounterModule.decrement()); // Output: 1
+console.log(CounterModule.getCount());  // Output: 1    
+// Note: Direct access to 'count' is not possible
+// console.log(CounterModule.count); // Undefined
+
