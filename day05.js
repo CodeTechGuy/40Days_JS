@@ -37,3 +37,14 @@ while(dig>0){
 }
 
 console.log(`The reverse of the number is: ${rev}`)
+
+function createCounter() {
+    let count = 0;
+    return function() {
+        count += 1;
+        return count;
+    }   ;
+}       
+const counter = createCounter();
+console.log(counter()); // Output: 1
+console.log(counter()); // Output: 2
