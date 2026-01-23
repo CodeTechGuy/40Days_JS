@@ -139,3 +139,17 @@ console.log(CounterModule.getCount());  // Output: 1
 // Note: Direct access to 'count' is not possible
 // console.log(CounterModule.count); // Undefined
 
+// Example 7: Maintaining State in Event Handlers using Closure
+function setupButton() {
+    let clickCount = 0; // private variable
+    const button = document.createElement('button');
+    button.textContent = 'Click me';
+    button.addEventListener('click', function() {
+        clickCount += 1;
+        console.log('Button clicked ' + clickCount + ' times');
+    });
+    document.body.appendChild(button);
+}
+setupButton();
+// Note: Each time the button is clicked, the clickCount variable maintains its state due to closure.
+
