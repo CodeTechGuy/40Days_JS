@@ -153,3 +153,58 @@ function setupButton() {
 setupButton();
 // Note: Each time the button is clicked, the clickCount variable maintains its state due to closure.
 
+
+// Example 8: Memoization using Closure
+function memoize(fn) {
+    const cache = {};
+    return function(...args) {
+        const key = JSON.stringify(args);
+        if (cache[key]) {
+            return cache[key];
+        } else {
+            const result = fn(...args);
+            cache[key] = result;
+            return result;
+        }
+    };
+}
+const fibonacci = memoize(function(n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+});
+console.log(fibonacci(10)); // Output: 55
+console.log(fibonacci(20)); // Output: 6765
+// Note: The fibonacci function benefits from memoization by caching previously computed results.
+
+// Example 9: Partial Application using Closure
+function partial(fn, ...presetArgs) {
+    return function(...laterArgs) {
+        return fn(...presetArgs, ...laterArgs);
+    };  
+}
+function add(a, b, c) {
+    return a + b + c;
+}   
+const add5And10 = partial(add, 5, 10);
+console.log(add5And10(15)); // Output: 30
+// Note: The add5And10 function has preset the first two arguments of the add function using partial application.
+
+// Example 10: Currying using Closure
+function curry(fn) {
+    return function curried(...args) {
+        if (args.length >= fn.length) {
+            return fn(...args);
+        } else {
+            return function(...moreArgs) {
+                return curried(...args, ...moreArgs);
+            };  
+        }
+    };
+}   
+function multiply(a, b, c) {
+    return a * b * c;
+}   
+const curriedMultiply = curry(multiply);
+console.log(curriedMultiply(2)(3)(4)); // Output: 24
+console.log(curriedMultiply(2, 3)(4)); // Output: 24
+// Note: The curriedMultiply function allows for partial application of arguments through currying.
