@@ -208,3 +208,36 @@ const curriedMultiply = curry(multiply);
 console.log(curriedMultiply(2)(3)(4)); // Output: 24
 console.log(curriedMultiply(2, 3)(4)); // Output: 24
 // Note: The curriedMultiply function allows for partial application of arguments through currying.
+
+// These examples demonstrate various use cases of closures in JavaScript, highlighting their versatility and power in managing state, encapsulating functionality, and enhancing code organization.
+
+// Example 11: Closure in Asynchronous Code
+function fetchData(url) {
+    let requestId = Math.random().toString(36).substring(7); // private variable
+    return function() {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Request ID:', requestId);
+                console.log('Data:', data);
+            });
+    };
+}
+const getData = fetchData('https://jsonplaceholder.typicode.com/todos/1');
+getData();
+// Note: The requestId variable is preserved in the asynchronous callback due to closure.   
+
+// Example 12: Closure with setTimeout
+function delayedGreeting(name) {
+    return function() {
+        setTimeout(function() {
+            console.log('Hello, ' + name + '!');
+        }
+        , 1000);
+    };
+}
+const greetJohn = delayedGreeting('John');
+greetJohn(); // Output after 1 second: Hello, John!
+// Note: The name variable is preserved in the setTimeout callback due to closure.  
+// These additional examples further illustrate the power of closures in handling asynchronous operations and preserving state across different execution contexts.
+
