@@ -241,3 +241,24 @@ greetJohn(); // Output after 1 second: Hello, John!
 // Note: The name variable is preserved in the setTimeout callback due to closure.  
 // These additional examples further illustrate the power of closures in handling asynchronous operations and preserving state across different execution contexts.
 
+// Example 13: Closure in Loops
+function createFunctions() {
+    const functions = [];
+    for (let i = 0; i < 5; i++) {
+        functions.push(function() {
+            console.log(i);
+        }); 
+    }
+    return functions;
+}   
+const funcs = createFunctions();
+funcs[0](); // Output: 0
+funcs[1](); // Output: 1
+funcs[2](); // Output: 2
+funcs[3](); // Output: 3
+funcs[4](); // Output: 4
+// Note: Each function in the array retains the value of 'i' at the time it was created due to closure. 
+// If 'var' was used instead of 'let', all functions would log '5' because 'var' is function-scoped.
+// These examples demonstrate various use cases of closures in JavaScript, highlighting their versatility and power in managing state, encapsulating functionality, and enhancing code organization.
+
+// Example 14: Closure with Event Listeners

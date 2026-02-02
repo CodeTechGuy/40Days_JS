@@ -81,3 +81,50 @@ console.log(sencap(sen));
 }).call({word:"JavaScript"})
 
 
+
+const arr = [1, 2, 3, 4, 5]
+
+const squaredArr = arr.map(function(num){
+    return num * num
+})
+console.log(squaredArr)
+const evenArr = arr.filter(function(num){
+    return num % 2 === 0
+}
+)
+console.log(evenArr)
+const sum = arr.reduce(function(accumulator, currentValue){
+    return accumulator + currentValue
+}, 0)
+console.log(sum)
+const person = {
+    firstName: "John",
+    lastName: "Doe",        
+    fullName: function(){
+        return this.firstName + " " + this.lastName
+    }
+}
+console.log(person.fullName())
+const boundFullName = person.fullName.bind({firstName: "Jane", lastName: "Smith"})
+console.log(boundFullName())
+const fetchData = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Data fetched successfully")
+        }, 1000)
+    })
+}
+fetchData().then(data => console.log(data))
+.catch(error => console.error(error))   
+async function fetchAsyncData() {
+    try {
+        const data = await fetchData()
+        console.log(data)
+    } catch (error) {
+        console.error(error)
+    }
+}
+fetchAsyncData()
+greetJohn() // Output after 1 second: Hello, John!
+// Note: The requestId variable is preserved in the asynchronous callback due to closure.
+
