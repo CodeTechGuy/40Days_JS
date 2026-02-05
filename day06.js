@@ -128,3 +128,10 @@ fetchAsyncData()
 greetJohn() // Output after 1 second: Hello, John!
 // Note: The requestId variable is preserved in the asynchronous callback due to closure.
 
+function greet(name) {
+    const requestId = Math.random().toString(36).substring(7)   
+    setTimeout(function() {
+        console.log(`Hello, ${name}! (Request ID: ${requestId})`)
+    }, 1000)
+}
+greet("John")
