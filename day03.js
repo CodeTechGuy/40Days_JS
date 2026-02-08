@@ -78,3 +78,13 @@ source code -> tokenize -> parsing -> AST -> Machine code
 ?? - null/undefined 
 
 */
+function sencap(str){
+    let senArr = str.split(" ")
+    let capSen = []
+    for(let i=0; i<senArr.length; i++){
+        capSen.push(senArr[i].charAt(0).toUpperCase() + senArr[i].slice(1))
+    }   
+    return capSen.join(" ")
+}
+let sen = "Hello world from javaScript"
+console.log(sencap(sen));   
