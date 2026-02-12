@@ -34,7 +34,24 @@ if(!guessedCorrectly){
 }
 // console.log("Congratulations! You guessed the correct number: " + compNum);
 
+function VC(str){
+    let count = 0
+    let vowels = "aeiouAEIOU"
+    for(let i=0; i<str.length; i++){
+        if(vowels.includes(str[i])){
+            count++
+        }
+    }
+    return count
+}
+console.log(VC("aeiou"))
 
-
-
+function RevStr(str){   
+    let rev = ""
+    for(let i=str.length-1; i>=0; i--){
+        rev = rev + str[i]
+    }
+    return rev
+}
+console.log(RevStr("hello"))
 
