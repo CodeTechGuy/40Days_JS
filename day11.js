@@ -1,30 +1,25 @@
 // CLOSURES    Closures are functions that "remember" their lexical scope even when the function is executed outside that lexical scope.
 
-
 // Usefulness of closure
 // 1. Data Privacy: Closures can be used to create private variables that cannot be accessed from outside the function.
 // 2. Function Factories: Closures can be used to create functions with preset parameters or behaviors.
 // 3. Maintaining State: Closures can be used to maintain state in an application, such as in event handlers or callbacks.
 // 4. Module Pattern: Closures can be used to create modules that encapsulate functionality and expose only the necessary parts.
 
-
-
 // Example 1: Simple Closure
 function outerFunction(outerVariable) {
     return function innerFunction(innerVariable) {
-        console.log('Outer Variable: ' + outerVariable);
-        console.log('Inner Variable: ' + innerVariable);
+        console.log("Outer Variable: " + outerVariable);
+        console.log("Inner Variable: " + innerVariable);
     };
-}   
-const newFunction = outerFunction('outside');
-newFunction('inside');
-
-
+}
+const newFunction = outerFunction("outside");
+newFunction("inside");
 
 // Example 2: Counter using Closure
 function createCounter() {
-    let count = 0; // private variable  
-    return function() {
+    let count = 0; // private variable
+    return function () {
         count += 1;
         return count;
     };
@@ -33,15 +28,12 @@ const counter = createCounter();
 console.log(counter()); // Output: 1
 console.log(counter()); // Output: 2
 
-
-
 // Example 3: Guess the Number Game using Closure
 function guessGame() {
-    
     function guessTheNumberGame() {
         let compNum = Math.floor(Math.random() * 10) + 1;
         let attempts = 5;
-        return function() {
+        return function () {
             let userNum = prompt("Guess a number between 1 and 10:");
             if (userNum == compNum) {
                 alert("You guessed it right!");
@@ -71,40 +63,37 @@ function guessGame() {
 
 // The above code is functionally similar to the code in day07.js but uses closures to encapsulate the game logic and state.
 
-
-
 // YT class code
 function outer() {
     let x = 20;
 
     return function inner() {
         console.log(x);
-    }
+    };
 }
 
 const func = outer();
-console.log("here ",func());
-
+console.log("here ", func());
 
 // Example 4: Private Variables using Closure
 function Person(name, age) {
     let _name = name; // private variable
-    let _age = age;   // private variable
-    this.getName = function() {
+    let _age = age; // private variable
+    this.getName = function () {
         return _name;
     };
-    this.getAge = function() {
+    this.getAge = function () {
         return _age;
-    };  
+    };
 }
 
-const person1 = new Person('Alice', 30);
+const person1 = new Person("Alice", 30);
 console.log(person1.getName()); // Output: Alice
-console.log(person1.getAge());  // Output: 30
+console.log(person1.getAge()); // Output: 30
 
 // Example 5: Function Factory using Closure
 function makeMultiplier(multiplier) {
-    return function(value) {
+    return function (value) {
         return value * multiplier;
     };
 }
@@ -112,52 +101,50 @@ const double = makeMultiplier(2);
 const triple = makeMultiplier(3);
 console.log(double(5)); // Output: 10
 console.log(triple(5)); // Output: 15
-console.log(makeMultiplier(4)(5)); // Output: 20    
-
+console.log(makeMultiplier(4)(5)); // Output: 20
 
 // Example 6: Module Pattern using Closure
-const CounterModule = (function() {
-    let count = 0; // private variable  
+const CounterModule = (function () {
+    let count = 0; // private variable
     return {
-        increment: function() {
+        increment: function () {
             count += 1;
             return count;
         },
-        decrement: function() {
-            count -= 1; 
+        decrement: function () {
+            count -= 1;
             return count;
         },
-        getCount: function() {
+        getCount: function () {
             return count;
-        }
+        },
     };
 })();
 console.log(CounterModule.increment()); // Output: 1
 console.log(CounterModule.increment()); // Output: 2
 console.log(CounterModule.decrement()); // Output: 1
-console.log(CounterModule.getCount());  // Output: 1    
+console.log(CounterModule.getCount()); // Output: 1
 // Note: Direct access to 'count' is not possible
 // console.log(CounterModule.count); // Undefined
 
 // Example 7: Maintaining State in Event Handlers using Closure
 function setupButton() {
     let clickCount = 0; // private variable
-    const button = document.createElement('button');
-    button.textContent = 'Click me';
-    button.addEventListener('click', function() {
+    const button = document.createElement("button");
+    button.textContent = "Click me";
+    button.addEventListener("click", function () {
         clickCount += 1;
-        console.log('Button clicked ' + clickCount + ' times');
+        console.log("Button clicked " + clickCount + " times");
     });
     document.body.appendChild(button);
 }
 setupButton();
 // Note: Each time the button is clicked, the clickCount variable maintains its state due to closure.
 
-
 // Example 8: Memoization using Closure
 function memoize(fn) {
     const cache = {};
-    return function(...args) {
+    return function (...args) {
         const key = JSON.stringify(args);
         if (cache[key]) {
             return cache[key];
@@ -168,7 +155,7 @@ function memoize(fn) {
         }
     };
 }
-const fibonacci = memoize(function(n) {
+const fibonacci = memoize(function (n) {
     if (n <= 1) return n;
     return fibonacci(n - 1) + fibonacci(n - 2);
 });
@@ -178,13 +165,13 @@ console.log(fibonacci(20)); // Output: 6765
 
 // Example 9: Partial Application using Closure
 function partial(fn, ...presetArgs) {
-    return function(...laterArgs) {
+    return function (...laterArgs) {
         return fn(...presetArgs, ...laterArgs);
-    };  
+    };
 }
 function add(a, b, c) {
     return a + b + c;
-}   
+}
 const add5And10 = partial(add, 5, 10);
 console.log(add5And10(15)); // Output: 30
 // Note: The add5And10 function has preset the first two arguments of the add function using partial application.
@@ -195,15 +182,15 @@ function curry(fn) {
         if (args.length >= fn.length) {
             return fn(...args);
         } else {
-            return function(...moreArgs) {
+            return function (...moreArgs) {
                 return curried(...args, ...moreArgs);
-            };  
+            };
         }
     };
-}   
+}
 function multiply(a, b, c) {
     return a * b * c;
-}   
+}
 const curriedMultiply = curry(multiply);
 console.log(curriedMultiply(2)(3)(4)); // Output: 24
 console.log(curriedMultiply(2, 3)(4)); // Output: 24
@@ -214,51 +201,73 @@ console.log(curriedMultiply(2, 3)(4)); // Output: 24
 // Example 11: Closure in Asynchronous Code
 function fetchData(url) {
     let requestId = Math.random().toString(36).substring(7); // private variable
-    return function() {
+    return function () {
         fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                console.log('Request ID:', requestId);
-                console.log('Data:', data);
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Request ID:", requestId);
+                console.log("Data:", data);
             });
     };
 }
-const getData = fetchData('https://jsonplaceholder.typicode.com/todos/1');
+const getData = fetchData("https://jsonplaceholder.typicode.com/todos/1");
 getData();
-// Note: The requestId variable is preserved in the asynchronous callback due to closure.   
+// Note: The requestId variable is preserved in the asynchronous callback due to closure.
 
 // Example 12: Closure with setTimeout
 function delayedGreeting(name) {
-    return function() {
-        setTimeout(function() {
-            console.log('Hello, ' + name + '!');
-        }
-        , 1000);
+    return function () {
+        setTimeout(function () {
+            console.log("Hello, " + name + "!");
+        }, 1000);
     };
 }
-const greetJohn = delayedGreeting('John');
+const greetJohn = delayedGreeting("John");
 greetJohn(); // Output after 1 second: Hello, John!
-// Note: The name variable is preserved in the setTimeout callback due to closure.  
+// Note: The name variable is preserved in the setTimeout callback due to closure.
 // These additional examples further illustrate the power of closures in handling asynchronous operations and preserving state across different execution contexts.
 
 // Example 13: Closure in Loops
 function createFunctions() {
     const functions = [];
     for (let i = 0; i < 5; i++) {
-        functions.push(function() {
+        functions.push(function () {
             console.log(i);
-        }); 
+        });
     }
     return functions;
-}   
+}
 const funcs = createFunctions();
 funcs[0](); // Output: 0
 funcs[1](); // Output: 1
 funcs[2](); // Output: 2
 funcs[3](); // Output: 3
 funcs[4](); // Output: 4
-// Note: Each function in the array retains the value of 'i' at the time it was created due to closure. 
+// Note: Each function in the array retains the value of 'i' at the time it was created due to closure.
 // If 'var' was used instead of 'let', all functions would log '5' because 'var' is function-scoped.
 // These examples demonstrate various use cases of closures in JavaScript, highlighting their versatility and power in managing state, encapsulating functionality, and enhancing code organization.
 
 // Example 14: Closure with Event Listeners
+function createCounter(selector) {
+    let count = 0;
+
+    const button = document.querySelector(selector);
+
+    button.addEventListener("click", function () {
+        count++;
+        console.log(`${selector} clicked ${count} times`);
+    });
+}
+
+createCounter("#btn1");
+createCounter("#btn2");
+
+const buttons = document.querySelectorAll(".btn");
+
+for (var i = 0; i < buttons.length; i++) {
+    (function (index) {
+        buttons[index].addEventListener("click", function () {
+            console.log("Button index:", index);
+        });
+    })(i);
+}
