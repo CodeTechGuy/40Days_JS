@@ -439,3 +439,36 @@ const useSSL = config.useSSL ?? true; // false
 console.log(host, port, useSSL);
 //  The nullish coalescing operator (??) only considers null and undefined as nullish values.
 //  It does not treat other falsy values like 0, false, or an empty string as nullish.
+
+//  Closures
+function guessTheNumberGame() {
+    const compNum = Math.floor(Math.random() * 100) + 1;
+    let attempts = 5;
+    return function () {
+        const userNum = prompt("Guess a number between 1 and 100:");
+        if (userNum == compNum) {
+            alert("You guessed it right!");
+            return true;
+        } else if (attempts > 0) {
+            alert("Try again!");
+            attempts--;
+            return false;
+        } else {
+            alert("Game Over! The number was " + compNum);
+            return false;
+        }
+        };
+    }
+const game = guessTheNumberGame();
+let guessedCorrectly = false;
+for (let i = 0; i < 5; i++) {
+    if (game()) {
+        guessedCorrectly = true;
+        break;
+    }   
+}
+if (!guessedCorrectly) {
+    console.log("You were not able to find the right answer.");
+}   
+
+
