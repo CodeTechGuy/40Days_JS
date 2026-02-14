@@ -271,3 +271,5 @@ for (var i = 0; i < buttons.length; i++) {
         });
     })(i);
 }
+// Note: The above code demonstrates how closures can be used to capture the current value of 'i' in a loop when adding event listeners to multiple buttons. Each button will log its own index when clicked, thanks to the closure created by the immediately invoked function expression (IIFE).
+
