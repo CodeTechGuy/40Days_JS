@@ -51,7 +51,18 @@ function RevStr(str){
     for(let i=str.length-1; i>=0; i--){
         rev = rev + str[i]
     }
-    return rev
+    return rev;
 }
-console.log(RevStr("hello"))
+console.log(RevStr("hello"));
+
+function fact(n){
+    if(n==0){
+        return 1
+    }
+    return n * fact(n-1)
+}
+console.log(fact(5))
+
+const fac = n => n<=1 ? 1 : n*fac(n-1)
+console.log(fac(6))
 
