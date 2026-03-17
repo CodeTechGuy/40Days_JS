@@ -70,3 +70,36 @@ if (!String.prototype.toUpperCase) {
     return result;
   };
 }
+
+
+// Constructor function
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+// Adding method using prototype
+Person.prototype.greet = function() {
+  return "Hello, my name is " + this.name;
+};
+
+// Creating objects
+const person1 = new Person("Alice", 25);
+const person2 = new Person("Bob", 30);
+
+// Using the prototype method
+console.log(person1.greet()); // Hello, my name is Alice
+console.log(person2.greet()); // Hello, my name is Bob
+
+
+function Car(brand) {
+  this.brand = brand;
+}
+
+// Add method via prototype
+Car.prototype.getBrand = function() {
+  return "Car brand is " + this.brand;
+};
+
+const c1 = new Car("Toyota");
+console.log(c1.getBrand());
