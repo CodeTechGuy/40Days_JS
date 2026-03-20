@@ -1,3 +1,5 @@
+// Classes are syntatical sugar on functions
+
 class Cricketer {
     constructor(name, role){
         this.name = name,
