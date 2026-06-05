@@ -74,9 +74,11 @@ source code -> tokenize -> parsing -> AST -> Machine code
 
 && - can first option be converted to false return false	
      can't convert first option then return second option
+     console.log("cow" && "horse") // horse
 
 || - can first option be converted to true return true
      can't convert first option then return second option
+     console.log("cow" || "horse") // cow
 
 ?? - null/undefined 
 
