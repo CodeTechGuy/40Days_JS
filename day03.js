@@ -75,6 +75,9 @@ source code -> tokenize -> parsing -> AST -> Machine code
 && - can first option be converted to false return false	
      can't convert first option then return second option
 
+|| - can first option be converted to true return true
+     can't convert first option then return second option
+
 ?? - null/undefined 
 
 */
