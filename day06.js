@@ -88,15 +88,17 @@ const squaredArr = arr.map(function(num){
     return num * num
 })
 console.log(squaredArr)
+
 const evenArr = arr.filter(function(num){
     return num % 2 === 0
-}
-)
+})
 console.log(evenArr)
+
 const sum = arr.reduce(function(accumulator, currentValue){
     return accumulator + currentValue
 }, 0)
 console.log(sum)
+
 const person = {
     firstName: "John",
     lastName: "Doe",        
@@ -105,8 +107,26 @@ const person = {
     }
 }
 console.log(person.fullName())
+// bind() creates a new function where `this` is permanently set to the provided object:
 const boundFullName = person.fullName.bind({firstName: "Jane", lastName: "Smith"})
 console.log(boundFullName())
+// call() invokes the function immediately with a specified `this` value and arguments:
+console.log(person.fullName.call({firstName: "Alice", lastName: "Johnson"}))
+// apply() is similar to call(), but it takes arguments as an array:
+console.log(person.fullName.apply({firstName: "Bob", lastName: "Brown"}))
+// In the above examples, we demonstrate how `bind()`, `call()`, and `apply()` can be used to change the context of `this` in JavaScript functions.
+// `bind()` creates a new function with a permanently bound `this` value, while `call()` and `apply()` invoke the function immediately with a 
+//  specified `this` value. The choice between them depends on whether you want to create a new function or invoke it immediately.
+
+// Why use bind()?
+// Without bind(), if you store the method in a variable:
+// const fn = person.fullName;
+// console.log(fn());
+// this may be undefined (in strict mode) or the global object (in non-strict mode), causing incorrect results.
+// bind() ensures that this always points to the object you specify:
+// const fn = person.fullName.bind(person);
+// Now fn() will always return "John Doe" regardless of how it's called.
+
 const fetchData = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
