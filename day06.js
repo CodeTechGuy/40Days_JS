@@ -145,13 +145,15 @@ async function fetchAsyncData() {
     }
 }
 fetchAsyncData()
-greetJohn() // Output after 1 second: Hello, John!
-// Note: The requestId variable is preserved in the asynchronous callback due to closure.
 
 function greet(name) {
     const requestId = Math.random().toString(36).substring(7)   
+    // .toString(36) - Converts the number to a string using base 36.
+    // .substring(7) - Extracts a portion of the string starting from index 7 to the end, effectively removing the "0." prefix from the random number.
     setTimeout(function() {
         console.log(`Hello, ${name}! (Request ID: ${requestId})`)
     }, 1000)
 }
-greet("John")
+greet("John") // Asynchronous call to greet, which will print the greeting after 1 second, along with a unique request ID.
+greet("Jane")
+// Note: The requestId variable is preserved in the asynchronous callback due to closure.
