@@ -33,31 +33,36 @@ function guessGame() {
     function guessTheNumberGame() {
         let compNum = Math.floor(Math.random() * 10) + 1;
         let attempts = 5;
+
         return function () {
-            let userNum = prompt("Guess a number between 1 and 10:");
-            if (userNum == compNum) {
+            if (attempts <= 0) {
+                alert("Game Over! The number was " + compNum);
+                return true; // stop the loop
+            }
+
+            let userNum = Number(prompt("Guess a number between 1 and 10:"));
+
+            if (userNum === compNum) {
                 alert("You guessed it right!");
                 return true;
-            } else if (attempts > 0) {
-                alert("Try again!");
-                attempts--;
-                return false;
-            } else {
-                alert("Game Over! The number was " + compNum);
-                return false;
             }
+
+            attempts--;
+            alert(`Wrong guess! Attempts left: ${attempts}`);
+
+            if (attempts === 0) {
+                alert("Game Over! The number was " + compNum);
+                return true;
+            }
+
+            return false;
         };
     }
+
     const game = guessTheNumberGame();
-    let guessedCorrectly = false;
+
     for (let i = 0; i < 5; i++) {
-        if (game()) {
-            guessedCorrectly = true;
-            break;
-        }
-    }
-    if (!guessedCorrectly) {
-        console.log("You were not able to find the right answer.");
+        if (game()) break;
     }
 }
 
