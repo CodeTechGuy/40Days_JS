@@ -276,5 +276,112 @@ for (var i = 0; i < buttons.length; i++) {
         });
     })(i);
 }
-// Note: The above code demonstrates how closures can be used to capture the current value of 'i' in a loop when adding event listeners to multiple buttons. Each button will log its own index when clicked, thanks to the closure created by the immediately invoked function expression (IIFE).
+// Note: 
+// The above code demonstrates how closures can be used to capture the current value of 'i' in a loop when adding event listeners to multiple buttons. 
+// Each button will log its own index when clicked, thanks to the closure created by the immediately invoked function expression (IIFE).
+
+// YT example of closure in bank account
+function createBankAccount(initialBalance) {
+    let balance = initialBalance;
+
+    return {
+        deposit(amount) {
+            balance += amount;
+            console.log("After deposit balance is " + balance);
+        },
+
+        withdraw(amount) {
+            if (amount <= 0) {
+                console.log("Invalid amount");
+                return;
+            }
+
+            if (amount > balance) {
+                console.log("Insufficient balance");
+                return;
+            }
+
+            balance -= amount;
+            console.log("After withdrawal balance is " + balance);
+        },
+
+        checkBalance() {
+            console.log("Current balance is " + balance);
+        }
+    };
+}
+
+const cust = createBankAccount(100000);
+
+cust.deposit(45000);
+cust.withdraw(45000);
+cust.withdraw(450000);
+cust.checkBalance();
+
+
+function counter(){
+    let count = 0;
+    return {
+        increment : () => {
+            count++;
+            console.log(count);
+        },
+        decrement : () => {
+            count--;
+            console.log(count);
+        },
+        reset : () => {
+            count = 0;
+            console.log("counter set to 0");
+        }
+    }
+}
+
+const cnt = counter();
+cnt.increment();
+cnt.increment();
+cnt.decrement();
+cnt.reset();
+
+// Slight Performance Overhead : 
+// Creating many closures can consume more memory and processing time than using shared methods in some situations.
+// For example, if you create thousands of objects where each object has its own closure-based methods, it may use more memory than defining methods on a prototype.
+
+
+
+// Use closures when you need:
+
+// Private variables
+// State that persists between function calls
+// Function factories
+// Callbacks and event handlers
+// Module-like patterns
+// When to Avoid Them
+
+// Be cautious when:
+
+// Capturing very large objects
+// Creating huge numbers of closures in performance-critical code
+// The same behavior can be shared more efficiently via prototypes or classes
+
+
+// Using Closures
+// Every account gets its own copy of deposit and withdraw, and each closure keeps its own private balance.
+// If you create 100,000 accounts, you'll also create 100,000 versions of deposit, withdraw, and getBalance.
+
+
+// Using a Class
+// Methods are stored once on the prototype and shared by all instances.
+// Methods are identical for all objects.
+// Now there is only one deposit, one withdraw, and one getBalance method in memory, shared by all accounts.
+
+// With closures:
+// 100,000 account objects
+// 300,000 method functions (deposit, withdraw, getBalance)
+// More memory consumption
+
+// With a class:
+// 100,000 account objects
+// Only 3 shared methods on the prototype
+// Much lower memory usage
 
