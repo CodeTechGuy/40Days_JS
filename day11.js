@@ -385,3 +385,12 @@ cnt.reset();
 // Only 3 shared methods on the prototype
 // Much lower memory usage
 
+
+
+// Interview Summary (1-minute answer)
+
+// Closures allow a function to retain access to variables from its outer scope even after the outer function has finished executing. 
+// Their main advantages are data encapsulation, state preservation, function factories, and support for asynchronous programming patterns. 
+// Common real-world use cases include counters, debouncing, memoization, event handlers, and maintaining private state in modules. 
+// The main drawbacks are increased memory usage, potential memory leaks if references are retained unnecessarily, 
+// harder debugging of private state, and performance overhead when creating large numbers of closure-based objects compared to shared prototype methods.
