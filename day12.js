@@ -1,7 +1,7 @@
 //    Object's
 
 let user = {
-    name : "marco" ,
+    name: "marco",
     age: 23,
     "is admin": " configuration required ",
 };
@@ -34,27 +34,28 @@ console.log(user.age);  // 18
 
 // console.log(user);
 
-const sonekay = "age";
+const somekey = "age";
+console.log(user[somekey]);  // 18
+
+
 
 let car = prompt("Which is your fav car ? "); // !!!!!!!!!!
-
 let favCars = {
-    [car] : 5             // if you want to dynamically take a key which is not hardcoded
+    [car]: 5     // use to dynamically take a `key` which is not hardcoded
 }
-
 console.log(favCars);        //     !!!!!!!!!!!!!!!1
 
 
 
 
 // Constructor function
-function Car (name , model){       // parameter -> like placeholder where we store the values   ||  arguments -> the actuall value
+function Car(name, model) {       // parameter -> like placeholder where we store the values   ||  arguments -> the actuall value
     this.name = name;
     this.model = model
-} 
+}
 
-const bmwCar = new Car ("BMW" ,"competion");
-const audiCar = new Car("Audi","S class");
+const bmwCar = new Car("BMW", "competion");
+const audiCar = new Car("Audi", "S class");
 console.log(bmwCar);
 console.log(audiCar)
 
@@ -72,19 +73,20 @@ console.log(person);
 
 
 //      Factory function
-function createUser (name , age ) {
+function createUser(name, age) {
     return {
-        name,           // this is a short-Hand
-        age,
-        greet(){
+        name,    // shorthand for name: name
+        age,     // shorthand for age: age
+        greet() {
             console.log("Learning objects 15 Jan 2026 Sankranthi")
         }
     }
 }
-const user1 = createUser("ashok",60);
+const user1 = createUser("ashok", 60);
 console.log(user1);
-user1.name;
-user1.age;
+user1.name;  //simply access the properties but do not display anything 
+user1.age;   //because the values are not being used or logged.
+
 user1.greet();
 
 const user2 = createUser("bhushan", 54);
@@ -96,8 +98,8 @@ console.log(user2);
 
 let profile = {
     name: "ramesh",
-    company : "Palantir",
-    message : function() {
+    company: "Palantir",
+    message: function () {
         console.log(`${this.name} works at ${this.company}`)
     }
 }
@@ -113,26 +115,26 @@ profile.message();
 //       Nested object 
 profile = {
     name: "ramesh",
-    company : "Palantir",
-    message : function() {
+    company: "Palantir",
+    message: function () {
         console.log(`${this.name} works at ${this.company}`)
     },
     address: {
-        city : "Banglore",
+        city: "Banglore",
         pin: 56032,
-        state : "Karnataka",
-        country : "India",
-        greeting : function() {
+        state: "Karnataka",
+        country: "India",
+        greeting: function () {
             console.log("welcome to karnataka");
         }
     },
-    // salary :  undefined   // 500000
+    // salary :  undefined  ||  500000
 }
 
 console.log("-----------about salary property! -------");
 console.log("salary" in profile);
 
-if(!profile.salary) {
+if (!profile.salary) {
     console.log("The salary property doesn't exit")
 }
 
@@ -145,7 +147,7 @@ profile.address.greeting();
 
 
 //       for  ........ in
-for(let key in profile){
+for (let key in profile) {
     console.log(key);               // only to get key's
     console.log(profile[key]);      // to get key and value both
 }
@@ -160,7 +162,7 @@ console.log(Object.entries(profile));
 
 
 
-//       Object Reference 
+//       Object Reference (object is a non primitive data type)
 let fruit = { name: "mongo" };        //XA01
 let oneMoreFruit = { name: "mango" }; //YB02
 
@@ -169,30 +171,31 @@ console.log(fruit === oneMoreFruit);  // false  , because both are different obj
 
 fruit = oneMoreFruit;   // now both are pointing to same object in memory
 
-console.log(fruit == oneMoreFruit);
+console.log(fruit == oneMoreFruit); //true
+console.log(fruit === oneMoreFruit); //true
 
 
 
 //          Static Methods
 
-const target = {p:1 , q:2};
-const source = {a:3 , b:4};
+const target = { p: 1, q: 2 };
+const source = { a: 3, b: 4 };
 
-const returnedObj = Object.assign(target , source);   // when Object.assign is used  the value is assigned from src to target
+const returnedObj = Object.assign(target, source);   // when Object.assign is used  the value is assigned from src to target
 console.log(returnedObj);
 
-const obj1 = {name: "tapas"};
-const obj2 = Object.assign({},obj1);
+const obj1 = { name: "tapas" };
+const obj2 = Object.assign({}, obj1);
 console.log(obj2); // obj1 & obj2 have same value but not the same reference
-console.log( obj1 == obj2); // false                // this is Shallow cloning
+console.log(obj1 == obj2); // false     // this is Shallow cloning
 
 
 //      Shallow vs Deep copy
 const obj3 = {
-    a : 1,
-    b : {c: 2}
+    a: 1,
+    b: { c: 2 }
 }
-const obj4 = Object.assign({} , obj3);
+const obj4 = Object.assign({}, obj3);
 console.log(obj4);  //  {a: 1, b: {…}}
 
 obj4.b.c = 3;
@@ -226,8 +229,8 @@ console.log(myArr);
 
 
 //      Convert Map or Array to Object --- use Object.fromEntries 
-const entries = new Map ([
-    ["foo","bar"],
+const entries = new Map([
+    ["foo", "bar"],
     ["baz", 42],
 ]);
 
@@ -242,30 +245,103 @@ const emp = {
 Object.freeze(emp);
 emp.salary = 200;
 emp.name = "Alex";
-delete emp.salary;
+delete emp.salary; // can't delete the property and can't change the value of existing property
 console.log(emp.salary);
 console.log(emp);
 console.log("-----------")
 console.log(Object.isFrozen(emp));          // with freeze you can't add new properties or re-assign new values
 
 
+// Deep Freeze Function
+function deepFreeze(obj) {
+    Object.freeze(obj);
+
+    for (const key in obj) {
+        const value = obj[key];
+
+        if (
+            value !== null &&
+            typeof value === "object" &&
+            !Object.isFrozen(value)
+        ) {
+            deepFreeze(value);
+        }
+    }
+
+    return obj;
+}
+
+// Object.freeze(user) only freezes the top-level object. 
+// The nested address object remains mutable.
+
+const user = {
+    name: "Ashok",
+    address: {
+        city: "Shimoga",
+        state: "Karnataka"
+    }
+};
+
+deepFreeze(user);
+
+user.name = "Bhushan";               // ❌
+user.address.city = "Bengaluru";     // ❌
+delete user.address.state;           // ❌
+
+console.log(user);
+
+
 
 //  Immutability with seal()
 const dept = {
-    name : "finance"
+    name: "finance"
 }
 Object.seal(dept);                          // with seal similar to freeze only this is you can re-assign value's to property
 
 dept.address = "Banglore";
-delete dept.name;
+delete dept.name; // can't delete the property but can change the value of existing property
 
 dept.name = "HR";
-console.log(dept)                        
+console.log(dept)
+
+
+// Deep Seal
+// If you want to seal nested objects too:
+function deepSeal(obj) {
+    Object.seal(obj);
+
+    for (const key in obj) {
+        const value = obj[key];
+
+        if (
+            value !== null &&
+            typeof value === "object" &&
+            !Object.isSealed(value)
+        ) {
+            deepSeal(value);
+        }
+    }
+
+    return obj;
+}
+const user = {
+    name: "Ashok",
+    address: {
+        city: "Shimoga"
+    }
+};
+
+deepSeal(user);
+
+user.name = "Bhushan";               // ✅
+user.address.city = "Bengaluru";     // ✅
+delete user.address;                 // ❌
+console.log(user);
 
 
 //  hasOwn() method
-console.log(Object.hasOwn(dept , "name"));      // true
-console.log(Object.hasOwn(dept , "address"));   // false
+console.log(Object.hasOwn(dept, "name"));      // true
+console.log(Object.hasOwn(dept, "address"));   // false
 
 
 //  object destructuring
@@ -277,53 +353,51 @@ const student = {
     'std': 3,
     'subjects': ['Maths', 'English', 'EVS'],
     'parents': {
-      'father': 'Brown Williamson',
-      'mother': 'Sophia',
-      'email': 'john-parents@abcde.com'
+        'father': 'Brown Williamson',
+        'mother': 'Sophia',
+        'email': 'john-parents@abcde.com'
     },
     'address': {
-      'street': '65/2, brooklyn road',
-      'city': 'Carterton',
-      'country': 'New Zealand',
-      'zip': 5791
-    }   
+        'street': '65/2, brooklyn road',
+        'city': 'Carterton',
+        'country': 'New Zealand',
+        'zip': 5791
+    }
 }
 
-const {name, age, meal="bread"} = student ;    // instead of this -- const name = student.name  ( we use destructuring )
+const { name, age, meal = "bread" } = student;    // instead of this -- const name = student.name  ( we use destructuring )
 // let meal = student.meal? student.meal : "bread"
-                // or
+// or
 // student.meal = "bread";
 // const meal = student.meal
 
 const city = student.address.city;
-console.log(name, city , age, meal);
+console.log(name, city, age, meal);
 
 //      creating new variable
-const {subjects, numberOfSubjects = subjects.length} = student;
+const { subjects, numberOfSubjects = subjects.length } = student;
 console.log(numberOfSubjects); // 3
 
-
-
 //      Aliases
-const {std: standard} = student;
+const { std: standard } = student;
 // console.log(std);     // will give error
 console.log(standard);
 
 
 //      Nested objects destructuring
 
-const {address : {zip}} = student  ;                                    // const {address} = student;
-                                                                        // const zip = address.zip;
+const { address: { zip } } = student;                                    // const {address} = student;
+// const zip = address.zip;
 console.log(zip);
 
 
-const {address: { zip: Jip }} = student;   // Aliases in nested objects
+const { address: { zip: Jip } } = student;   // Aliases in nested objects
 console.log(Jip); // 5791   
 
 
 
 //    --------------- Function parameter destructuring -----------------
-function sendEmail({parents:{email}}) {
+function sendEmail({ parents: { email } }) {
     console.log(`Sending email to ${email}`);
 }
 sendEmail(student);
@@ -332,29 +406,29 @@ sendEmail(student);
 // -------------  Destructure a function Return Value -----------------
 const getStudent = () => {
     return {
-       'name': 'John Williamson',
+        'name': 'John Williamson',
         'age': 9,
         'std': 3,
         'subjects': ['Maths', 'English', 'EVS'],
         'parents': {
-          'father': 'Brown Williamson',
-          'mother': 'Sophia',
-          'email': 'john-parents@abcde.com'
+            'father': 'Brown Williamson',
+            'mother': 'Sophia',
+            'email': 'john-parents@abcde.com'
         },
         'address': {
-          'street': '65/2, brooklyn road',
-          'city': 'Carterton',
-          'country': 'New Zealand',
-          'zip': 5791
+            'street': '65/2, brooklyn road',
+            'city': 'Carterton',
+            'country': 'New Zealand',
+            'zip': 5791
         }
     }
 }
 
-const {name: anotherName , subjects: anotherSubject} = getStudent();                    // const anotherStudent = getStudent();
-                                                                                        // const anotherName = anotherStudent.name;
-                                                                                        // const anotherSubject = anotherStudent.subjects;
+const { name: anotherName, subjects: anotherSubject } = getStudent();                    // const anotherStudent = getStudent();
+// const anotherName = anotherStudent.name;
+// const anotherSubject = anotherStudent.subjects;
 
-console.log(anotherName , anotherSubject);
+console.log(anotherName, anotherSubject);
 
 
 //                     Destructuring in loops
@@ -373,8 +447,8 @@ const students = [
     }
 ];
 
-for( let {name, grade} of students ) {
-    console.log(name , grade);
+for (let { name, grade } of students) {
+    console.log(name, grade);
 }
 
 
@@ -439,36 +513,5 @@ const useSSL = config.useSSL ?? true; // false
 console.log(host, port, useSSL);
 //  The nullish coalescing operator (??) only considers null and undefined as nullish values.
 //  It does not treat other falsy values like 0, false, or an empty string as nullish.
-
-//  Closures
-function guessTheNumberGame() {
-    const compNum = Math.floor(Math.random() * 100) + 1;
-    let attempts = 5;
-    return function () {
-        const userNum = prompt("Guess a number between 1 and 100:");
-        if (userNum == compNum) {
-            alert("You guessed it right!");
-            return true;
-        } else if (attempts > 0) {
-            alert("Try again!");
-            attempts--;
-            return false;
-        } else {
-            alert("Game Over! The number was " + compNum);
-            return false;
-        }
-        };
-    }
-const game = guessTheNumberGame();
-let guessedCorrectly = false;
-for (let i = 0; i < 5; i++) {
-    if (game()) {
-        guessedCorrectly = true;
-        break;
-    }   
-}
-if (!guessedCorrectly) {
-    console.log("You were not able to find the right answer.");
-}   
 
 
