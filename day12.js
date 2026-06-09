@@ -515,3 +515,72 @@ console.log(host, port, useSSL);
 //  It does not treat other falsy values like 0, false, or an empty string as nullish.
 
 
+// 4. Build a Student Management System
+// Store student details in an object (name, age, grades).
+// Implement a method to calculate the average grade.
+const student = {
+    name: "Ashok",
+    age: 21,
+    grades: [85, 90, 78, 92, 88],
+
+    calculateAverage() {
+        const total = this.grades.reduce((sum, grade) => sum + grade, 0);
+        return total / this.grades.length;
+    }
+};
+
+console.log("Name:", student.name);
+console.log("Age:", student.age);
+console.log("Grades:", student.grades);
+console.log("Average Grade:", student.calculateAverage());
+
+
+// 5. Book Store Inventory System
+// Store books in an object.
+// Add functionality to check availability and restock books.
+const bookstore = {
+    books: {
+        javascript: 10,
+        react: 5,
+        python: 0
+    },
+
+    checkAvailability(bookName) {
+        if (this.books[bookName] > 0) {
+            console.log(`${bookName} is available. Stock: ${this.books[bookName]}`);
+        } else {
+            console.log(`${bookName} is out of stock.`);
+        }
+    },
+
+    restock(bookName, quantity) {
+        if (this.books[bookName] !== undefined) {
+            this.books[bookName] += quantity;
+        } else {
+            this.books[bookName] = quantity;
+        }
+
+        console.log(
+            `${bookName} restocked. Current stock: ${this.books[bookName]}`
+        );
+    }
+};
+bookstore.checkAvailability("javascript");
+bookstore.checkAvailability("python");
+
+bookstore.restock("python", 20);
+
+bookstore.checkAvailability("python");
+
+
+// 7. How do you check if an object has a certain property?
+// To check whether an object has a property, I can use hasOwnProperty(), the 'in' operator, or Object.hasOwn(). 
+// hasOwnProperty() and Object.hasOwn() check only the object's own properties, while the 'in' operator checks both own and inherited properties.
+
+
+// 9. What’s the best way to deeply copy a nested object? Expalin with examples
+// A deep copy creates a completely independent copy of an object, including all nested objects and arrays. 
+// The modern and recommended way is to use structuredClone(), which correctly copies nested structures and many built-in types. 
+// The spread operator and Object.assign() create only shallow copies. 
+// An older approach is JSON.parse(JSON.stringify(obj)), but it loses functions, dates, and other special types.
+
