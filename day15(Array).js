@@ -143,42 +143,110 @@ console.log(stringWithToString); // Output: "1,2,3,4,5"
 //   { id: 4, name: "Sales" },
 // ];
 //  T-021: Can you filter employees who work in the "Engineering" department?
+const engineeringEmployees = employees.filter((employee) => {return employee.departmentId === 2 });
 
 //  T-022: Create a new array that combines employee names and department names in the format: "Alice (HR)".
+const employeeDepartmentNames = employees.map((employee) => {
+    const department = departments.find((dept) => dept.id === employee.departmentId);
+    return `${employee.name} (${department ? department.name : "Unknown"})`;
+});
 
 //  T-023: Find the highest salary among employees.
+const highestSalary = employees.reduce((max, employees) => {
+    return employees.salary > max ? employees.salary : max;
+},0);
 
 //  T-024: Check if there is at least one employee in the "Sales" department.
+const hasSalesEmployee = employees.some((employee) => employee.departmentId === 4);
 
 //  T-025: Write a function to filter employees earning more than 6000.
+const highEarners = (minSalary) => employees.filter((employee) => employee.salary > minSalary);
 
 //  T-026: Create an array of employee names only.
+const employeeNames = employees.map((employee) => employee.name);
 
-//  T-027: Calculate the total salary of all employees using
+//  T-027: Calculate the total salary of all employees using reduce.
+const totalSalary = employees.reduce((total , employee) => total + employee.salary , 0);
 
 //  T-028: Is there any employee earning less than 5000?
+const hasLowerEarner = employees.some((employee) => employee.salary < 5000);
 
 //  T-029: Find the first employee who earns exactly 5100.
+const employeeWithSalary5100 = employees.find((employee) => employee.salary === 5100);
 
 //  T-030: Find the last employee in the "HR" department.
+const lastHREmployee = employees.findLast((employee) => employee.departmentId === 1);
 
 //  T-031: Find the first employee in the "Marketing" department.
+const firstMarketingEmployee = employees.find((employee) => employee.departmentId === 3);
 
 //  T-032: Check if all employees earn more than 4000.
+const allEarnMoreThan4000 = employees.every((employee) => employee.salary > 4000);
 
 //  T-033: Find the first employee in the "Sales" and "HR" department.
+const firstSalesEmployee = employees.find((employee) => employee.departmentId === 4);
+const firstHREmployee = employees.find((employee) => employee.departmentId === 1);
 
 //  T-034: Verify if all employees belong to a department listed in the departments array.
+const allEmployeesInDepartments = employees.every((employee) => {
+    return departments.some((dept) => dept.id === employee.departmentId);
+});
+
+    // Create a Set of valid department IDs.
+    const departmentIds = new Set(
+        departments.map(dept => dept.id)
+    );
+    const allValid = employees.every(emp =>
+        departmentIds.has(emp.departmentId)
+    );
+    console.log(allValid);
+
 
 //  T-035: Log each employee's name and department name to the console.
+const employeeDeparmentInfo = employees.map((employee) => {
+    const department = departments.find((dept) => dept.id === employee.departmentId);
+    console.log(`${employee.name} works in ${department ? department.name : "Unknown Department"}`);
+});
 
 //  T-036: Extract all employee names into a single array.
+const allEmployeeNames = employees.map((employee) => employee.name);
 
 //  T-037: Increment each employee's salary by 10%
+const incrementedSalaries = employees.map((employee) => {
+    return {
+        ...employee,
+        salary: employee.salary * 1.10
+    }
+})
 
 //  T-038: Assume each employee can have multiple skills. Create an array of employee skills and flatten them. Example: [{name: "Alice", skills: ["Excel", "Management"]}, ...].
+const employeeWithSkills = [
+    { name: "Alice", skills: ["Excel", "Management"] },
+    { name: "Bob", skills: ["JavaScript", "React"] },
+    { name: "Charlie", skills: ["Marketing", "SEO"] },
+    { name: "Diana", skills: ["HR", "Recruitment"] },
+    { name: "Edward", skills: ["Engineering", "Python"] },
+    { name: "Fiona", skills: ["Sales", "Negotiation"] },
+    { name: "George", skills: ["Marketing", "Content Creation"] },
+    { name: "Helen", skills: ["Sales", "Customer Service"] },
+];
+const allSkills = employeeWithSkills.flatMap((employee) => employee.skills);
+
+// If you don't want duplicates like "Marketing" and "Sales":
+const uniqueSkills = [
+    ...new Set(
+        employeeWithSkills.flatMap(
+            emp => emp.skills
+        )
+    )
+];
+console.log(uniqueSkills);
+
 
 //  T-039: Find the total salary of all employees working in the "Engineering" department.
+const totalEngineeringSalary = employees
+    .filter((employee) => employee.departmentId === 2)
+    .reduce((total, employee) => total + employee.salary , 0);
 
 //  T-040: Check if there is any department where all employees earn more than 5000.
 
