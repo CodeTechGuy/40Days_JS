@@ -5,13 +5,13 @@
 // const emptyArr = new Array(3);
 
 //  T-003: Create an array of 6 elements using the Array literals and access the fourth element in the array using its length property.
-const arr = [1,2,3,4,5,6];
+const arr = [1, 2, 3, 4, 5, 6];
 let n = arr.length;
-console.log(n - (n-3)); // output: 4
+console.log(n - (n - 3)); // output: 4
 
 //  T-004: Use the for loop on the above array to print elements in the odd index.
-for(let i=0; i<arr.length; i++){
-    if(i%2 != 0) {
+for (let i = 0; i < arr.length; i++) {
+    if (i % 2 != 0) {
         console.log(arr[i]);
     }
 }
@@ -27,7 +27,7 @@ arr.pop(); // remove from the end
 
 //  T-007: Create an array containing the name of your favourite foods(10 foods). Destructure the 6th food element from the array using destructuring.
 const food = ["Pizza", "Burger", "Pasta", "Sushi", "Tacos", "Ice Cream", "Steak", "Salad", "Fries", "Dumplings"];
-const [,,,,,sixthFood] = food;
+const [, , , , , sixthFood] = food;
 console.log(sixthFood); // Output: Ice Cream
 
 //  T-008: Take out the last 8 food items from the above array using the Array destructuring. Hint: rest parameter.
@@ -45,16 +45,16 @@ const arrToEmpty = [1, 2, 3, 4, 5];
 arrToEmpty.length = 0;
 
 //  T-011: Create an array of 10 elements(number 1 to 10). Resize the array to length 6 once you find the number 5 in that array. Hint: Use for-loop.
-const numArr = [1,2,3,4,5,6,7,8,9,10];
-for(let i=0; i<numArr.length; i++){
-    if(numArr[i] === 5){
+const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+for (let i = 0; i < numArr.length; i++) {
+    if (numArr[i] === 5) {
         numArr.length = 6;
         break;
     }
 }
 
 //  T-012: Create an Array of 10 elements. Use the splice() method to empty the array.
-const arrToEmpty2 = [1,2,3,4,5,6,7,8,9,10];
+const arrToEmpty2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 arrToEmpty2.splice(0, arrToEmpty2.length);
 arrToEmpty2.splice(); // This will not empty the array, it will just return a new array with all the elements removed, but the original array will remain unchanged.
 arrToEmpty2.splice(0); // This will also not empty the array, it will just return a new array with all the elements removed, but the original array will remain unchanged.
@@ -143,7 +143,7 @@ console.log(stringWithToString); // Output: "1,2,3,4,5"
 //   { id: 4, name: "Sales" },
 // ];
 //  T-021: Can you filter employees who work in the "Engineering" department?
-const engineeringEmployees = employees.filter((employee) => {return employee.departmentId === 2 });
+const engineeringEmployees = employees.filter((employee) => { return employee.departmentId === 2 });
 
 //  T-022: Create a new array that combines employee names and department names in the format: "Alice (HR)".
 const employeeDepartmentNames = employees.map((employee) => {
@@ -154,7 +154,7 @@ const employeeDepartmentNames = employees.map((employee) => {
 //  T-023: Find the highest salary among employees.
 const highestSalary = employees.reduce((max, employees) => {
     return employees.salary > max ? employees.salary : max;
-},0);
+}, 0);
 
 //  T-024: Check if there is at least one employee in the "Sales" department.
 const hasSalesEmployee = employees.some((employee) => employee.departmentId === 4);
@@ -166,7 +166,7 @@ const highEarners = (minSalary) => employees.filter((employee) => employee.salar
 const employeeNames = employees.map((employee) => employee.name);
 
 //  T-027: Calculate the total salary of all employees using reduce.
-const totalSalary = employees.reduce((total , employee) => total + employee.salary , 0);
+const totalSalary = employees.reduce((total, employee) => total + employee.salary, 0);
 
 //  T-028: Is there any employee earning less than 5000?
 const hasLowerEarner = employees.some((employee) => employee.salary < 5000);
@@ -192,14 +192,14 @@ const allEmployeesInDepartments = employees.every((employee) => {
     return departments.some((dept) => dept.id === employee.departmentId);
 });
 
-    // Create a Set of valid department IDs.
-    const departmentIds = new Set(
-        departments.map(dept => dept.id)
-    );
-    const allValid = employees.every(emp =>
-        departmentIds.has(emp.departmentId)
-    );
-    console.log(allValid);
+// Create a Set of valid department IDs.
+const departmentIds = new Set(
+    departments.map(dept => dept.id)
+);
+const allValid = employees.every(emp =>
+    departmentIds.has(emp.departmentId)
+);
+console.log(allValid);
 
 
 //  T-035: Log each employee's name and department name to the console.
@@ -246,7 +246,7 @@ console.log(uniqueSkills);
 //  T-039: Find the total salary of all employees working in the "Engineering" department.
 const totalEngineeringSalary = employees
     .filter((employee) => employee.departmentId === 2)
-    .reduce((total, employee) => total + employee.salary , 0);
+    .reduce((total, employee) => total + employee.salary, 0);
 
 //  T-040: Check if there is any department where all employees earn more than 5000.
 const departmentsWithAllHighEarners = departments.filter((department) => {
@@ -280,30 +280,30 @@ const highEarningEmployeeNames = employees
     .map((employee) => employee.name);
 
 //  T-044: Write a for-of loop to print the names of all employees from the employees array.
-for(const employee of employees){
+for (const employee of employees) {
     console.log(employee.name);
 }
 
 //  T-045: Using a for-of loop, print the names of employees earning more than 5000.
-for(const employee of employees){
-    if(employee.salary > 5000){
+for (const employee of employees) {
+    if (employee.salary > 5000) {
         console.log(employee.name);
     }
 }
 
 //  T-046: Modify the for-of loop to destructure each employee object and log their name and salary.
-for(const { name, salary } of employees){
+for (const { name, salary } of employees) {
     console.log(name, salary);
 }
 
 //  T-047: Write a for-of loop to match employees with their departments and print the results.
-for(const employee of employees){
+for (const employee of employees) {
     const department = departments.find((dept) => dept.id === employees.departmentId);
     console.log(`${employee.name} works in ${department ? department.name : "Unknown Department"}`);
 };
 
 //  T-048: Use Array.prototype.entries() with a for-of loop to print the index and name of each employee.
-for(const [index, employee] of employees.entries()){
+for (const [index, employee] of employees.entries()) {
     console.log(`Index: ${index}, Name: ${employee.name}`);
 }
 
@@ -318,39 +318,149 @@ function convertArgumentsToArray() {
 }
 
 //  T-051: Write a snippet to select all div elements on a webpage (using document.querySelectorAll) and convert the resulting NodeList into an array.
+function getAllDivsAsArray() {
+    const divNodeList = document.querySelectorAll('div');
+    const divArray = Array.from(divNodeList);
+    return divArray;
+}
 
 //  T-052: Merge these two arrays into a single array:
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const mergedArray = [...arr1, ...arr2]; // Using spread operator
+// or
+const mergedArray2 = arr1.concat(arr2); // using concat method
+// or
+const mergedArray3 = Array.from(arr1).concat(arr2); // using Array.from and concat method
+// or
+const mergedArray4 = Array.from([...arr1, ...arr2]); // using Array.from and spread operator
+// or
+const mergedArray5 = Array.from(arr1).concat(Array.from(arr2)); // using Array.from and concat method on both arrays
 
-// const arr1 = [1, 2];
-// const arr2 = [3, 4];
 //  T-053: Create an array of n duplicate values using Array.from. Input: Create an array with 5 "A" values. Output: ["A", "A", "A", "A", "A"]
+const duplicateValuesArray = new Array(5).fill("A"); // using fill method
+// or
+const duplicateValuesArray2 = Array.from({ length: 5 }, () => "A"); // using Array.from with a mapping function
 
 //  T-054: Use Array.from to convert a string like "Hello" into an array of characters.
+const stringToArray = Array.from("Hello");
 
 //  T-055: For the array, ['apple', 'banana', 'apricot', 'mango', 'blueberry'], group words by their first letter using group().
+const fruits = ['apple', 'banana', 'apricot', 'mango', 'blueberry'];
+const groupedFruits = fruits.reduce((grouped, fruit) => {
+    const firstLetter = fruit[0];
+    if (!grouped[firstLetter]) {
+        grouped[firstLetter] = [];
+
+    }
+    grouped[firstLetter].push(fruit);
+    return grouped;
+}, {});
+
 
 //  T-057: From this array [3, 7, 3, 2, 3, 8, 7, 7], find the most repeated number. Hint: Use array method.
+const numbers = [3, 7, 3, 2, 3, 8, 7, 7];
+const frequencyMap = numbers.reduce((freq, num) => {
+    freq[num] = (freq[num] || 0) + 1;
+    return freq;
+}, {});
 
 //  T-058: Find the median of [5, 2, 9, 1, 3, 6, 8].
+const numArray = [5, 2, 9, 1, 3, 6, 8];
+const sortedNumArray = [...numArray].sort((a, b) => a - b);
+const midIndex = Math.floor(sortedNumArray.length / 2);
+let median;
+if (sortedNumArray.length % 2 === 0) {
+    median = (sortedNumArray[midIndex - 1] + sortedNumArray[midIndex]) / 2;
+} else {
+    median = sortedNumArray[midIndex];
+}
 
 //  T-059: Convert this array [['a', 1], ['b', 2], ['c', 3]], into { a: 1, b: 2, c: 3 } using array method(s).
+const arrayToConvert = [['a', 1], ['b', 2], ['c', 3]];
+const convertedObject = Object.fromEntries(arrayToConvert);
+
 
 //  T-060: Flatten and convert all letters to uppercase in one step using flatMap(). Here is input array: [['a', 'b'], ['c', 'd']].
+const flattenedUppercase = [['a', 'b'], ['c', 'd']].flatMap(subArray => subArray.map(str => str.toUpperCase()));
 
 //  T-061: Count the occurrences of each fruit in this array: ['apple', 'banana', 'apple', 'mango', 'banana', 'banana']
+const fruitsArray = ['apple', 'banana', 'apple', 'mango', 'banana', 'banana'];
+const fruitCount = fruitsArray.reduce((acc, fruit) => {
+    acc[fruit] = (acc[fruit] || 0) + 1;
+    return acc;
+}, {});
 
 //  T-062: Extract extract [‘b’, ‘c’, ‘d’] using slice() from this array: ['a', 'b', 'c', 'd', 'e']
+const letters = ['a', 'b', 'c', 'd', 'e'];
+const slicedLetters = letters.slice(1, 4); // This will extract elements from index 1 to index 3 (4 is exclusive)
 
 //  T-063: Sort the array [9, 3, 1, 6, 8] in ascending order using toSorted()
+const unsortedArray = [9, 3, 1, 6, 8];
+const sortedArray = [...unsortedArray].sort((a, b) => a - b); // using sort method
+// or using toSorted() if available in the environment
+// const sortedArray = unsortedArray.toSorted((a, b) => a - b); // using toSorted method (if supported)
 
 //  T-064: Reverse [1, 2, 3, 4, 5] using toReversed() and compare it with reverse()
+const originalArray = [1, 2, 3, 4, 5];
+const reversedWithReverse = [...originalArray].reverse(); // using reverse method
+// or using toReversed() if available in the environment
+// const reversedWithToReversed = originalArray.toReversed(); // using toReversed method (if supported)
 
 //  T-065: Group the follwing array elements based on age(Adult vs Non-Adult):
 
-// const users = [
-//   { name: 'Alice', age: 55 },
-//   { name: 'Bob', age: 3 },
-//   { name: 'Charlie', age: 25 },
-// ];
+const users = [
+    { name: 'Alice', age: 55 },
+    { name: 'Bob', age: 3 },
+    { name: 'Charlie', age: 25 },
+];
+const groupedByAge = users.reduce((grouped, user) => {
+    const ageGroup = user.age >= 18 ? 'Adult' : 'Non-Adult' ;
+
+    grouped[ageGroup].push(user);
+    return grouped;
+},{
+    Adult: [],
+    'Non-Adult': []
+});
+
+const groupedUsers = users.reduce((acc, user) => {
+    const category = user.age >= 18 ? "Adult" : "Non-Adult";
+
+    acc[category].push(user);
+
+    return acc;
+}, {
+    Adult: [],
+    "Non-Adult": []
+});
+
 //  T-066: Find the longest word in this sentence using Array and Array methods: "40 Days of JavaScript by tapaScript is a powerful initiative".
+const sentence = "40 Days of JavaScript by tapaScript is a powerful initiative";
+const longestWord = sentence
+    .split(" ")
+    .reduce((longest, current) =>
+        current.length > longest.length
+            ? current
+            : longest
+    );
+
+console.log(longestWord);
+
 //  T-067: Find common elements between two arrays, [1, 2, 3, 4], [3, 4, 5, 6]
+const arr1 = [1, 2, 3, 4];
+const arr2 = [3, 4, 5, 6];
+
+const common = arr1.filter(
+    num => arr2.includes(num)
+);
+
+console.log(common);
+
+const set2 = new Set(arr2);
+
+const common = arr1.filter(
+    num => set2.has(num)
+);
+
+console.log(common);
