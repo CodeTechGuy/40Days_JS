@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="aTask">
+    <button onclick="addTask()">Add Task</button>
+    <input type="text" placeholder="search task..." id="sTask" onkeyup="searchText()">
+    <!-- <button onclick="searchText()">Search</button> -->
+
+    <script>
+        const aTask = document.querySelector("#aTask");
+        const ul = document.createElement("ul");
+        document.body.append(ul);
+        // const ul = document.querySelector("ul");
+        function addTask(){
+            if (aTask.value.trim() === "") return;
+
+            const liElem = document.createElement("li");
+            liElem.innerText = aTask.value;
+
+            const delBtn = document.createElement("button");
+            delBtn.innerText = "❌";
+            delBtn.style.marginLeft = "10px";
+            delBtn.onclick = function(){
+                liElem.remove();
+            }
+            liElem.append(delBtn);
+
+            const tskComp = document.createElement("button");
+            tskComp.innerText = "✅";
+            tskComp.style.marginLeft = "15px";
+            tskComp.onclick = function(){
+                // liElem.style.textDecoration =  liElem.style.textDecoration === "line-through" ? "none": "line-through";
+                liElem.classList.toggle("completed");
+            }
+            // console.log("text-decoration : ", liElem.textDecoration());
+            liElem.append(tskComp);
+
+            
+
+            ul.append(liElem);
+            // const li = document.querySelector("li");
+            // li.innerText = aTask.value;
+            
+            // document.body.appendChild(li);
+
+
+
+            const edTsk = document.createElement("button");
+            edTsk.innerText = "🖊️";
+            edTsk.style.marginLeft = "15px";
+            edTsk.onclick = function(){
+                const tsk = prompt("Edit your task");
+                // console.log(tsk);
+                liElem.innerText = tsk;
+                liElem.append(delBtn, tskComp , edTsk);
+                // liElem.append(tskComp);
+                // liElem.append(edTsk);
+            }
+            liElem.append(edTsk);
+
+
+
+            aTask.value = "";
+        }
+
+
+        const sTask = document.querySelector("#sTask");
+        function searchText(){
+            const inp = sTask.value;
+            const items = document.querySelectorAll("ul li");
+    
+            items.forEach(element => {
+                element.style.display = element.innerText.toLowerCase().includes(inp.toLowerCase()) ? "block":"none";
+            });
+
+        }
+    </script>
+</body>
+</html>
