@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Paragraph</title>
+    <style>
+        .toggle{
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <p id="para" class="toggle">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, omnis.
+    </p>
+    <button onclick="togglePara()">Toggle Paragraph</button>
+
+    <script>
+        const para = document.querySelector("#para")
+        // para.style.visibility = "visible";
+
+        function togglePara(){
+            // para.style.visibility = "hidden";
+            para.classList.toggle("toggle")
+        }
+    </script>
+</body>
+</html>
