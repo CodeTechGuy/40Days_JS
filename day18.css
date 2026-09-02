@@ -1,0 +1,26 @@
+.main-class {
+    font-size: large;
+    padding: 2px;
+    border: 2px solid red;
+    background-color: rgb(253, 210, 217);
+    border-radius: 5px;
+}
+.secondary-class {
+    font-size: large;
+    padding: 2px;
+    border: 2px solid green;
+    background-color: rgb(149, 217, 217);
+    border-radius: 5px;
+}
+.layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    /* background-color: #f4f4f4; */
+}
+.box{
+    transition: opacity 0.5s ease-in-out;
+}

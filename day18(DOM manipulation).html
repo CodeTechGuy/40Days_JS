@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <script src="day18(DOM manipulation).js" defer></script>
+    <link rel="stylesheet" href="day18.css">
+</head>
+<body>
+    <h1>Hello DOM Manipulation</h1>
+    <p>Original Para 1</p>
+    <p>Original Para 2</p>
+    <p>Original Para 3</p>
+    <p>Original Para 4</p>
+
+    <ul id="rmList">
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+        <li>E</li>
+    </ul>
+
+    <div id="rmDiv">This Div is going to be removed</div>
+
+
+    <div id="main-id" class="main-class layout">
+        <p class="info">
+            <span id="text">Dynamic Text</span>
+        </p>
+        <!-- this is a comment node -->
+    </div>
+
+    <div class="main-class layout">
+        <p class="info">
+            <span id="text">Class Manipulation</span>
+        </p>
+        <!-- this is a comment1 node -->
+    </div>
+
+
+    <div id="one">One</div>
+    <div id="two">Two</div>
+    <div id="three">Three</div>
+    
+
+    <p id="p-id" style="background-color: yellow; color: red;">This is a paragraph with an ID</p>
+
+
+    <div id="opacity" class="box">Opacity Box</div>
+    <button onclick="changeOpacity()">Change Opacity</button>
+
+</body>
+</html>
