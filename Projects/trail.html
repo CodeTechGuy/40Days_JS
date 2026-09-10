@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .faq-item{
+            border: 1px solid wheat;
+            border-radius: 10px;
+            /* align-items: center; */
+            margin: 10px;
+            /* size: 20px; */
+            padding: 10px;
+        }
+        .answer{
+            display: none;
+        }
+        .answer.show{
+            display: block;
+            /* display: none; */
+        }
+    </style>
+</head>
+<body>
+    <div class="faq">
+        <div class="faq-item">
+            <div class="question">What is JS ?</div>
+            <div class="answer">JS is a scripting language.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">What is JS ?</div>
+            <div class="answer">JS is a scripting language.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">What is JS ?</div>
+            <div class="answer">JS is a scripting language.</div>
+        </div>
+    </div>
+
+    <script>
+        const faq = document.querySelector(".faq");
+
+        faq.addEventListener("click",function(event){
+            if(event.target.classList.contains("question")){
+                event.stopPropagation();
+
+                const currItem = event.target.parentElement;
+                const currAns = currItem.querySelector(".answer");
+    
+                currAns.classList.toggle("show");
+            }
+        })
+
+        document.addEventListener("click", function(){
+            const allAns = faq.querySelectorAll(".answer.show");
+            allAns.forEach(ans => ans.classList.remove("show"));
+        })
+
+    </script>
+</body>
+</html>
