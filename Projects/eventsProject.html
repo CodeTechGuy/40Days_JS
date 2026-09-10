@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Project</title>
+    <style>
+        
+        div{
+            display: block;
+            border: 1px solid palegoldenrod;
+            margin: 5px;
+            border-radius: 10px;
+            padding: 5px;
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="one">
+        <h4>What is JS?</h4>
+        <p>JS is a scripting Language</p>
+        <!-- <hr> -->
+
+    </div>
+
+    <div class="two">
+        <h4>What is dom?</h4>
+        <p>it represents page structure</p>
+        <!-- <hr> -->
+
+    </div>
+
+    <div class="three">
+        <h4>What is Events?</h4>
+        <p>it is a signal that tell something happened in browser</p>
+
+    </div>
+
+    <script>
+        {
+            const one1 = document.querySelector(".one");
+            const two2 = document.querySelector(".two");
+            const three3 = document.querySelector(".three");
+            // para.classList.add("hidden")
+            // const divElem = document.getElementsByTagName("div");
+            
+            function visibility(event){
+                const para = event.currentTarget.querySelector("p");
+                para.classList.toggle("hidden")
+            }
+            // one1[0].addEventListener("click",visibility)
+            // two2[0].addEventListener("click",visibility)
+            // three3[0].addEventListener("click",visibility)
+    
+            one1.addEventListener("click",visibility)
+            two2.addEventListener("click",visibility)
+            three3.addEventListener("click",visibility)
+        }
+
+
+        // Using Event Delegation
+        // {
+        //     document.body.addEventListener("click",(event)=>{
+        //         const div = event.target.closest("div");
+        //         if(!div) return;
+        //         const paragraph = div.querySelector("p");
+        //         paragraph.classList.toggle("hidden");
+        //     })
+        // }
+        
+    </script>
+</body>
+</html>
