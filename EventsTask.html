@@ -7,7 +7,7 @@
     <title>Events Task</title>
     <script src="EventsTask.js" defer></script>
     <style>
-        .show{
+        /* .show{
             display: none;
         }
         .content{
@@ -16,9 +16,26 @@
         .content.active{
             display: block;
         }
-        .select{
+        .tab.select{
             border-radius: 2%;
             border-color: rgb(223, 143, 38);
+        } */
+
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .tab {
+            border: 2px solid transparent;
+        }
+
+        .tab.select {
+            border: 2px solid rgb(223, 143, 38);
+            border-radius: 2%;
         }
     </style>
 </head>
