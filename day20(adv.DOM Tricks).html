@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced DOM Tricks</title>
+    <script src="day20(Adv.DOM Tricks).js" defer></script>
+</head>
+<body>
+    <h1>DAY 20 - Advanced DOM</h1>
+
+    <div class="card">
+        <div>ele-1</div>
+        <div>ele-2</div>
+        <div>ele-3</div>
+        <div>ele-4</div>
+        <div>ele-5</div>
+        <div>ele-6</div>
+    </div>
+
+    <template id="card-template">
+        <hr>
+        <div class="temp">
+            <h3 class="title"></h3>
+            <p class="desc"></p>
+        </div>
+        <hr>
+    </template>
+
+    <ul id="docFragment"> </ul>
+
+    <p id="para">Hello <strong>world</strong> and Universe!</p>
+
+
+    <div class="card">
+        <h2>Title</h2>
+        <p>Description here</p>
+    </div>
+
+    <div id="box"></div>
+
+
+    <button class="btn">Some Button</button>
+
+    
+    <div id="watchMe">Hello</div>
+    <button onclick="changeDOM()">Change DOM</button>
+
+    
+    <!-- <p><hr>end of line <hr></p> -->
+</body>
+</html>
