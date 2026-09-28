@@ -8,6 +8,8 @@
     const sibling3 = sibling2.nextElementSibling;
     const lastChild = parent.lastElementChild;
 
+    const parentOfElement = sibling2.parentElement; // parent of sibling2 is the same as parent
+
 
     console.log(parent);
     console.log(firstChild)
@@ -22,7 +24,7 @@
 // Templates and Cloning
 {
     const template = document.querySelector("#card-template");
-    const clone = template.content.cloneNode(true);
+    const clone = template.content.cloneNode(true); // true means deep clone, false means shallow clone
     clone.querySelector(".title").textContent = "DOM ADV. Topics";
     clone.querySelector(".desc").textContent = "Hope you are learning something new";
 
@@ -34,6 +36,13 @@
 
 // Document Fragment and Range
 {
+    // Document Fragment
+    // - A lightweight container for DOM nodes
+    // - Not part of the main DOM tree
+    // - Can be used to build a DOM structure off-screen and then append it to the main DOM tree in a single operation
+    // - Improves performance by reducing reflows and repaints
+    // - Can be used to create a temporary DOM structure that can be reused multiple times
+
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i <= 3; i++) {
@@ -43,17 +52,23 @@
     }
 
     document.getElementById("docFragment").appendChild(fragment);
+    
+
+    // Range  
+    // - Represents a fragment of a document that can contain nodes and parts of text nodes
+    // - Can be used to extract a portion of the document, manipulate it, and insert it elsewhere
+    // - Can be used to create a selection of text in the document
+    
+    const p = document.getElementById('para');
+    const range = document.createRange();
+    
+    range.setStart(p.firstChild, 6);
+    range.setEnd(p.childNodes[2], 4);
+    
+    const content = range.cloneContents();
+    console.log("content: ", content);
+    p.appendChild(content);
 }
-
-// Range     
-const p = document.getElementById('para');
-const range = document.createRange();
-
-range.setStart(p.firstChild, 6);
-range.setEnd(p.childNodes[2], 4);
-
-const content = range.cloneContents();
-console.log("content: ", content);
 
 
 // Shadow DOM
